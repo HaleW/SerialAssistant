@@ -1,0 +1,365 @@
+﻿<Page
+    x:Class="SerialAssistant.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SerialAssistant"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Margin="20, 0, 20, 0"
+              Grid.Row="0" >
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Button FontFamily="Segoe MDL2 Assets"
+                            FontSize="25"
+                            Background="White"
+                            Content="&#xE80F;"
+                            ToolTipService.ToolTip="主页"/>
+
+                    <Button FontFamily="Segoe MDL2 Assets"
+                            FontSize="25"
+                            Background="White"
+                            Content="&#xE9CE;"
+                            ToolTipService.ToolTip="帮助"/>
+
+                    <Button FontFamily="Segoe MDL2 Assets"
+                            FontSize="25"
+                            Background="White"
+                            Content="&#xE72D;"
+                            ToolTipService.ToolTip="分享"/>
+
+                    <Button FontFamily="Segoe MDL2 Assets"
+                            FontSize="25"
+                            Background="White"
+                            Content="&#xE728;"
+                            ToolTipService.ToolTip="去应用商店评价"/>
+
+                    <Button FontFamily="Segoe MDL2 Assets"
+                            FontSize="25"
+                            Background="White"
+                            Content="&#xE946;"
+                            ToolTipService.ToolTip="关于"/>
+                </StackPanel>
+                <Border BorderThickness="1" 
+                        BorderBrush="Gray"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Margin="20, 0, 20, 0"
+              Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Margin="0,10,0,0" 
+                  Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="端口设置："
+                           FontSize="18"
+                           Grid.ColumnSpan="2"
+                           Margin="0,5,0,10" 
+                           Grid.Row="0"/>
+
+                <TextBlock Text="串口号："
+                           VerticalAlignment="Center" 
+                           Grid.Row="1"
+                           Grid.Column="0"/>
+                <ComboBox Width="130"
+                          Margin="20,5,0,5" 
+                          Grid.Row="1"
+                          Grid.Column="1"
+                          Name="PortIDComboBox"
+                          SelectionChanged="PortIDComboBox_SelectionChanged">
+                </ComboBox>
+
+                <TextBlock Text="波特率："
+                           VerticalAlignment="Center" 
+                           Grid.Row="2" 
+                           Grid.Column="0"/>
+                <ComboBox Width="130"
+                          Margin="20,5,0,5"  
+                          Grid.Row="2" 
+                          Grid.Column="1"
+                          Name="BaudRateComboBox">
+                    <ComboBoxItem>300</ComboBoxItem>
+                    <ComboBoxItem>600</ComboBoxItem>
+                    <ComboBoxItem>1200</ComboBoxItem>
+                    <ComboBoxItem>2400</ComboBoxItem>
+                    <ComboBoxItem>4800</ComboBoxItem>
+                    <ComboBoxItem>9600</ComboBoxItem>
+                    <ComboBoxItem>19200</ComboBoxItem>
+                    <ComboBoxItem>38400</ComboBoxItem>
+                    <ComboBoxItem>43000</ComboBoxItem>
+                    <ComboBoxItem>56000</ComboBoxItem>
+                    <ComboBoxItem>57600</ComboBoxItem>
+                    <ComboBoxItem>115200</ComboBoxItem>
+                </ComboBox>
+
+                <TextBlock Text="校验位："
+                           VerticalAlignment="Center"
+                           Grid.Row="3" 
+                           Grid.Column="0"/>
+                <ComboBox Width="130"
+                          Margin="20,5,0,5" 
+                          Grid.Row="3" 
+                          Grid.Column="1"
+                          Name="ParityBitComboBox">
+                    <!--
+                          无校验（no parity）
+                          奇校验（odd parity）：如果字符数据位中"1"的数目是偶数，校验位为"1"，如果"1"的数目是奇数，校验位应为"0"。（校验位调整个数）
+                          偶校验（even parity）：如果字符数据位中"1"的数目是偶数，则校验位应为"0"，如果是奇数则为"1"。（校验位调整个数）
+                          mark parity：校验位始终为1
+                          space parity：校验位始终为0
+                          -->
+
+                    <ComboBoxItem>无校验</ComboBoxItem>
+                    <ComboBoxItem ToolTipService.ToolTip=
+                                        "如果字符数据位中1的数目是偶数，校验位为1，
+                                        如果1的数目是奇数，校验位应为0">奇校验</ComboBoxItem>
+                    <ComboBoxItem ToolTipService.ToolTip=
+                                        "如果字符数据位中1的数目是偶数，
+                                        则校验位应为0，如果是奇数则为1">偶校验</ComboBoxItem>
+                    <ComboBoxItem ToolTipService.ToolTip=
+                                        "校验位始终为1">校验位为1</ComboBoxItem>
+                    <ComboBoxItem ToolTipService.ToolTip=
+                                        "校验位始终为0">校验位为0</ComboBoxItem>
+                </ComboBox>
+
+                <TextBlock Text="数据位：" 
+                           VerticalAlignment="Center" 
+                           Grid.Row="4"
+                           Grid.Column="0"/>
+                <ComboBox Width="130"
+                          Margin="20,5,0,5" 
+                          Grid.Row="4" 
+                          Grid.Column="1"
+                          Name="DataBitComboBox">
+                    <ComboBoxItem>5</ComboBoxItem>
+                    <ComboBoxItem>6</ComboBoxItem>
+                    <ComboBoxItem>7</ComboBoxItem>
+                    <ComboBoxItem>8</ComboBoxItem>
+                </ComboBox>
+
+                <TextBlock Text="停止位：" 
+                           VerticalAlignment="Center"
+                           Grid.Row="5" 
+                           Grid.Column="0"/>
+                <ComboBox Width="130"
+                          Margin="20,5,0,5" 
+                          Grid.Row="5" 
+                          Grid.Column="1"
+                          Name="StopBitComboBox">
+                    <ComboBoxItem>1</ComboBoxItem>
+                    <ComboBoxItem>1.5</ComboBoxItem>
+                    <ComboBoxItem>2</ComboBoxItem>
+                </ComboBox>
+
+                <Button Content="打开串口"
+                        Width="275"
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Center"
+                        Grid.ColumnSpan="2" 
+                        Grid.Row="6"/>
+
+                <Border BorderThickness="1" 
+                        BorderBrush="Gray" 
+                        Margin="0,20,0,0"
+                        Grid.ColumnSpan="2" 
+                        Grid.Row="7"/>
+
+                <TextBlock Text="接收设置：" 
+                           FontSize="18"
+                           Grid.ColumnSpan="2" 
+                           Margin="0,5,0,10" 
+                           Grid.Row="8"/>
+
+                <TextBlock Text="十六进制显示" 
+                           VerticalAlignment="Center" 
+                           Grid.Row="9" 
+                           Grid.Column="0"/>
+                <ToggleSwitch OffContent="" 
+                              OnContent="" 
+                              MinWidth="10" 
+                              Margin="20,0,0,0" 
+                              Grid.Row="9" 
+                              Grid.Column="1"/>
+
+                <TextBlock Text="接收暂停显示"
+                           VerticalAlignment="Center"
+                           Grid.Row="10" 
+                           Grid.Column="0"/>
+                <ToggleSwitch OffContent="" 
+                              OnContent="" 
+                              MinWidth="10"
+                              Margin="20,0,0,0"
+                              Grid.Row="10"
+                              Grid.Column="1"/>
+
+                <TextBlock Text="数据自动断帧" 
+                           VerticalAlignment="Center" 
+                           Grid.Row="11" 
+                           Grid.Column="0"/>
+                <RelativePanel Grid.Row="11" 
+                               Grid.Column="1">
+                    <ToggleSwitch OffContent=""
+                                  OnContent=""
+                                  MinWidth="10"
+                                  Margin="20, 0, 0, 0"/>
+                    <TextBox FontSize="10"
+                             TextWrapping="NoWrap"
+                             MaxLength="3"
+                             MinWidth="40"
+                             MinHeight="20" 
+                             Margin="30,0,0,0"
+                             PlaceholderText="帧长"
+                             TextAlignment="Center"
+                             RelativePanel.AlignRightWithPanel="True"
+                             RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                </RelativePanel>
+
+                <Button Content="清空接收区数据" 
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Left"
+                        Grid.Row="12"
+                        Grid.Column="0"
+                        Name="ClearReceiveButton"
+                        Click="ClearReceiveButton_Click"/>
+
+                <Button Content="保存接收区数据"
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Right"
+                        Grid.Row="12"
+                        Grid.Column="1"
+                        Name="SaveReceiveButton"
+                        Click="ClearReceiveButton_Click"/>
+
+                <Border BorderThickness="1" 
+                        BorderBrush="Gray" 
+                        Margin="0,20,0,0"
+                        Grid.ColumnSpan="2" 
+                        Grid.Row="13"/>
+
+                <TextBlock Text="发送设置：" 
+                           FontSize="18"
+                           Grid.ColumnSpan="2" 
+                           Margin="0,5,0,10" 
+                           Grid.Row="14"/>
+
+                <TextBlock Text="十六进制发送"
+                           VerticalAlignment="Center"
+                           Grid.Row="15" 
+                           Grid.Column="0"/>
+                <ToggleSwitch OffContent="" 
+                              OnContent="" 
+                              MinWidth="10"
+                              Margin="20,0,0,0"
+                              Grid.Row="15"
+                              Grid.Column="1"/>
+
+                <Button Content="清空发送区数据" 
+                        MinWidth="275" 
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Center"
+                        Grid.ColumnSpan="2" 
+                        Grid.Row="16"
+                        Name="ClearSendButton"
+                        Click="ClearSendButton_Click"/>
+            </Grid>
+
+            <Grid Margin="20, 10, 0, 0"
+                  Grid.Column="1" 
+                  Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBox ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         AcceptsReturn="True" 
+                         TextWrapping="Wrap" 
+                         Header="数据接收："
+                         MinHeight="100"
+                         Grid.Row="0"
+                         Name="ReceiveTextBox"/>
+
+                <TextBox ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"
+                         Header="数据发送："
+                         MinHeight="50"
+                         Margin="0, 20, 0, 0"
+                         Grid.Row="1"
+                         Name="SendTextBox"/>
+
+                <RelativePanel Margin="0, 5, 0, 0" 
+                               Grid.Row="2">
+                    <Button Content="发送"
+                            FontSize="20"
+                            RelativePanel.AlignVerticalCenterWithPanel="True"
+                            RelativePanel.AlignRightWithPanel="True"/>
+
+                    <TextBlock Text="接收："
+                               Name="ReceiveTextBlock"
+                               RelativePanel.AlignVerticalCenterWithPanel="True"
+                               RelativePanel.AlignLeftWithPanel="True"/>
+                    <TextBlock Text="0" 
+                               RelativePanel.AlignVerticalCenterWithPanel="True"
+                               RelativePanel.RightOf="ReceiveTextBlock"/>
+
+                    <TextBlock Text="发送：" 
+                               Name="SendTextBlock" 
+                               RelativePanel.AlignVerticalCenterWithPanel="True"
+                               RelativePanel.AlignHorizontalCenterWithPanel="True"/>
+                    <TextBlock Text="0" 
+                               RelativePanel.AlignVerticalCenterWithPanel="True"
+                               RelativePanel.RightOf="SendTextBlock"/>
+                </RelativePanel>
+
+            </Grid>
+        </Grid>
+
+        <Grid Margin="20, 10, 20, 0"
+              Grid.Row="2">
+            <Border BorderThickness="1" 
+                    BorderBrush="Gray"
+                    VerticalAlignment="Top"/>
+            <RelativePanel>
+
+                <!--<TextBlock>状态栏</TextBlock>-->
+            </RelativePanel>
+        </Grid>
+    </Grid>
+</Page>
