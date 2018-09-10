@@ -1,3 +1,3 @@
-#Serial Assistant
+# Serial Assistant
 
 UWP Serial Assistant.
