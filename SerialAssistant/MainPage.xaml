@@ -100,9 +100,7 @@
                           Margin="20,5,0,5" 
                           Grid.Row="1"
                           Grid.Column="1"
-                          Name="PortIDComboBox"
-                          SelectionChanged="PortIDComboBox_SelectionChanged">
-                </ComboBox>
+                          Name="PortNameComboBox" SelectionChanged="PortNameComboBox_SelectionChanged" DropDownOpened="PortNameComboBox_DropDownOpened"/>
 
                 <TextBlock Text="波特率："
                            VerticalAlignment="Center" 
@@ -118,7 +116,7 @@
                     <ComboBoxItem>1200</ComboBoxItem>
                     <ComboBoxItem>2400</ComboBoxItem>
                     <ComboBoxItem>4800</ComboBoxItem>
-                    <ComboBoxItem>9600</ComboBoxItem>
+                    <ComboBoxItem IsSelected="True">9600</ComboBoxItem>
                     <ComboBoxItem>19200</ComboBoxItem>
                     <ComboBoxItem>38400</ComboBoxItem>
                     <ComboBoxItem>43000</ComboBoxItem>
@@ -144,7 +142,7 @@
                           space parity：校验位始终为0
                           -->
 
-                    <ComboBoxItem>无校验</ComboBoxItem>
+                    <ComboBoxItem IsSelected="True">无校验</ComboBoxItem>
                     <ComboBoxItem ToolTipService.ToolTip=
                                         "如果字符数据位中1的数目是偶数，校验位为1，
                                         如果1的数目是奇数，校验位应为0">奇校验</ComboBoxItem>
@@ -169,7 +167,7 @@
                     <ComboBoxItem>5</ComboBoxItem>
                     <ComboBoxItem>6</ComboBoxItem>
                     <ComboBoxItem>7</ComboBoxItem>
-                    <ComboBoxItem>8</ComboBoxItem>
+                    <ComboBoxItem IsSelected="True">8</ComboBoxItem>
                 </ComboBox>
 
                 <TextBlock Text="停止位：" 
@@ -181,7 +179,7 @@
                           Grid.Row="5" 
                           Grid.Column="1"
                           Name="StopBitComboBox">
-                    <ComboBoxItem>1</ComboBoxItem>
+                    <ComboBoxItem IsSelected="True">1</ComboBoxItem>
                     <ComboBoxItem>1.5</ComboBoxItem>
                     <ComboBoxItem>2</ComboBoxItem>
                 </ComboBox>
@@ -191,7 +189,7 @@
                         Margin="0,10,0,0"
                         HorizontalAlignment="Center"
                         Grid.ColumnSpan="2" 
-                        Grid.Row="6"/>
+                        Grid.Row="6" Click="Button_Click"/>
 
                 <Border BorderThickness="1" 
                         BorderBrush="Gray" 
@@ -356,10 +354,14 @@
             <Border BorderThickness="1" 
                     BorderBrush="Gray"
                     VerticalAlignment="Top"/>
-            <RelativePanel>
-
-                <!--<TextBlock>状态栏</TextBlock>-->
-            </RelativePanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock
+                    Text="已连接设备："
+                    Margin="0, 10, 0, 10"/>
+                <TextBlock
+                    Margin="0, 10, 0, 10"
+                    Name="ConnectedDevicesTextBlock"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>
