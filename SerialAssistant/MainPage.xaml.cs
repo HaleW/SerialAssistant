@@ -1,7 +1,6 @@
 ﻿using SerialAssistant.SerialData;
-using Windows.UI.Popups;
-using Windows.UI.Xaml.Controls;
 using System;
+using Windows.UI.Xaml.Controls;
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
 
 namespace SerialAssistant
@@ -17,9 +16,9 @@ namespace SerialAssistant
         {
             this.InitializeComponent();
             serial.SerialList();
-            if(serial.PortName != null)
+            if (serial.AllPortName != null)
             {
-                foreach (string name in serial.PortName)
+                foreach (string name in serial.AllPortName)
                 {
                     PortNameComboBox.Items.Add(name);
                 }
@@ -34,11 +33,13 @@ namespace SerialAssistant
         private void ClearSendButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             SendTextBox.Text = string.Empty;
+            //serial.PortName.Clear();
+            //PortNameComboBox.Items.Clear();
         }
 
         private async void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            object PortName = PortNameComboBox.SelectedValue;
+            var PortName = PortNameComboBox.SelectionBoxItem;
             if (PortName == null)
             {
                 string message = string.Empty;
@@ -62,45 +63,46 @@ namespace SerialAssistant
             }
             else
             {
-                string BaudRate = BaudRateComboBox.SelectedValue.ToString();
-                string ParityBit = ParityBitComboBox.SelectedValue.ToString();
-                string DataBit = DataBitComboBox.SelectedValue.ToString();
-                string StopBit = StopBitComboBox.SelectedValue.ToString();
-                
+                string BaudRate = BaudRateComboBox.SelectionBoxItem.ToString();
+                string ParityBit = ParityBitComboBox.SelectionBoxItem.ToString();
+                string DataBit = DataBitComboBox.SelectionBoxItem.ToString();
+                string StopBit = StopBitComboBox.SelectionBoxItem.ToString();
+
                 serial.SerialDataSet(PortName.ToString(), BaudRate, ParityBit, DataBit, StopBit);
+
+                string data = serial.SerialDataRead();
+                ReceiveTextBox.Text = data.ToString();
             }
         }
 
         private void PortNameComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ConnectedDevicesTextBlock.Text = PortNameComboBox.SelectedItem.ToString();
+            //ConnectedDevicesTextBlock.Text = PortNameComboBox.SelectedItem.ToString();
         }
 
         private void PortNameComboBox_DropDownOpened(object sender, object e)
         {
             serial.SerialList();
-            if (serial.PortName.Count == 0)
+            if (serial.AllPortName.Count == 0)
             {
+                serial.AllPortName.Clear();
                 PortNameComboBox.Items.Clear();
             }
             else
             {
-                foreach (string name in serial.PortName)
+                foreach (string name in serial.AllPortName)
                 {
 
                     if (PortNameComboBox.Items.Contains(name))
                     {
-                        //PortNameComboBox.Items.Remove(name);
-                        //return;
+                        continue;
                     }
                     else
                     {
-                        
                         PortNameComboBox.Items.Add(name);
                     }
                 }
             }
-            
         }
     }
 }
